@@ -22,6 +22,8 @@ public:
     virtual int getX() const = 0;
     virtual int getY() const = 0;
     virtual double getOrientation() const = 0;
+    virtual double getVitesse() const = 0;
+    virtual bool estVivante() const = 0;
 
     virtual std::vector<IBestiole *> getBestiolesDetectees(
         const std::vector<IBestiole *> &toutes) const = 0;

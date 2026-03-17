@@ -32,7 +32,8 @@ private :
    double            orientation;
    double            vitesse;
    IComportement    * comportement;
-
+   
+   bool vivante;
    T               * couleur;
 
 
@@ -53,6 +54,9 @@ public :                                           // Forme canonique :
 
    //Pour gregaire
    double getOrientation() const override { return orientation; }
+
+   double getVitesse() const override { return vitesse; }
+   bool estVivante() const override { return vivante; }
 
    bool jeTeVois( const Bestiole & b ) const;
 

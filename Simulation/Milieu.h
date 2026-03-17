@@ -4,6 +4,8 @@
 #include "UImg.h"
 #include "Bestiole.h"
 #include "IBestiole.h"
+#include "IObservateur.h"
+#include "JournalSimulation.h"
 
 #include <iostream>
 #include <vector>
@@ -16,8 +18,13 @@ private:
     static const T          white[];
 
     int                     width, height;
-    std::vector<Bestiole>   listeBestioles;
-    std::vector<IBestiole*> ptrBestioles;
+    std::vector<IBestiole*>  ptrBestioles;  
+    std::vector<IObservateur*> observateurs;  // non owning
+    int                      pas;
+    JournalSimulation        journal;
+
+    void gererNaissancesSpontanees();
+    void notifier(const Evenement& e);
 
 public:
     Milieu(int _width, int _height);
@@ -28,15 +35,14 @@ public:
 
     void step(void);
 
-    void addMember(const Bestiole & b)
-    {
-        listeBestioles.push_back(b);
-        listeBestioles.back().initCoords(width, height);
-    }
+    void addMember(IBestiole* b);
+
+    // Fait naître une bestiole (événement extérieur)
+    void fairenaitre();
 
     const std::vector<IBestiole*>& getBestioles() const { return ptrBestioles; }
 
-    int nbVoisins(const Bestiole & b);
+    int nbVoisins(const IBestiole& b);  
 };
 
 #endif

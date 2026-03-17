@@ -1,6 +1,7 @@
 #include "Aquarium.h"
 #include "Milieu.h"
 #include "Bestiole.h"
+#include "BestioleFactory.h"
 #include "ConfigurationPopulation.h"
 
 #include <iostream>
@@ -11,13 +12,13 @@ int main()
     ConfigurationPopulation config;
     config.ajouterComportement("Gregaire", 0.30);
 
+    BestioleFactory::getInstance()->setConfiguration(&config);
+
     Aquarium ecosysteme(640, 480, 30);
 
-    for (int i = 1; i <= 20; ++i) {
-        Bestiole b;
-        b.setComportement(config.tirerComportement());
+    auto population = BestioleFactory::getInstance()->creerPopulation(20, 640, 480);
+    for (auto* b : population)
         ecosysteme.getMilieu().addMember(b);
-    }
 
     ecosysteme.run();
     return 0;
