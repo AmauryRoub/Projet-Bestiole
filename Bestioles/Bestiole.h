@@ -64,10 +64,12 @@ public :                                           // Forme canonique :
    int getAgeLimite() const override { return ageLimite; }
    bool estVivante() const override { return vivante; }
    double getResistanceCollision() const override { return 1.0; }
+   void agirAvecVoisines(const std::vector<IBestiole*>& voisines, Milieu& m);
 
    bool jeTeVois( const Bestiole & b ) const;
 
    void initCoords( int xLim, int yLim );
+   void setCoords(int px, int py) { x = px; y = py; }
 
    std::vector<IBestiole *> getBestiolesDetectees(
       const std::vector<IBestiole *> &toutes) const override;

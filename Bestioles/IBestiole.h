@@ -18,7 +18,7 @@ public:
     virtual IBestiole *clone() const = 0;
     virtual void accept(IVisiteur &v) = 0;
 
-    
+    virtual void setCoords(int px, int py) = 0;
     virtual int getId() const = 0;
     virtual int getX() const = 0;
     virtual int getY() const = 0;
@@ -36,6 +36,7 @@ public:
     virtual void setOrientation(double o) = 0;
     virtual void tuer() = 0;
     virtual double getResistanceCollision() const = 0;
+    virtual void agirAvecVoisines(const std::vector<IBestiole*>& voisines, Milieu& m) = 0;
 };
 
 #endif

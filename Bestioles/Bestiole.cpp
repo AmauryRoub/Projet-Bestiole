@@ -131,22 +131,21 @@ bool operator==(const Bestiole & b1, const Bestiole & b2)
     return (b1.identite == b2.identite);
 }
 
+void Bestiole::agirAvecVoisines(const std::vector<IBestiole*>& voisines, Milieu& m)
+{
+    if (comportement)
+        comportement->agir(*this, voisines, m);
+    bouge(m.getWidth(), m.getHeight());
+}
+
 bool Bestiole::jeTeVois(const Bestiole & b) const
 {
     double dist = std::sqrt((x - b.x) * (x - b.x) + (y - b.y) * (y - b.y));
     return (dist <= LIMITE_VUE);
 }
 
-std::vector<IBestiole *> Bestiole::getBestiolesDetectees(
-    const std::vector<IBestiole *> & toutes) const
+std::vector<IBestiole*> Bestiole::getBestiolesDetectees(
+    const std::vector<IBestiole*>& toutes) const
 {
-    std::vector<IBestiole *> vues;
-    for (auto *b : toutes) {
-        if (b->getId() == identite) continue;
-        double dist = std::sqrt((x - b->getX()) * (x - b->getX()) +
-                                (y - b->getY()) * (y - b->getY()));
-        if (dist <= LIMITE_VUE)
-            vues.push_back(b);
-    }
-    return vues;
+    return {}; // sans capteur, on ne détecte rien
 }

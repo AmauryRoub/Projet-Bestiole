@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 ConfigurationPopulation::ConfigurationPopulation()
-    : _probaYeux(0.5), _probaCamouflage(0.2),  _probaCarapace(0.25)
+    : _probaYeux(0.5), _probaOreilles(0.3), _probaCamouflage(0.2),  _probaCarapace(0.25)
 {}
 
 void ConfigurationPopulation::ajouterComportement(const std::string& nom, double pct)

@@ -6,8 +6,13 @@ struct ParamsSimulation
 {
     // Yeux
     double alphaMin = 0.3, alphaMax = 1.0;
-    double deltaYMin = 50., deltaYMax = 150.;
+    double deltaYMin = 100., deltaYMax = 200.; 
     double gammaYMin = 0.3, gammaYMax = 1.0;
+
+    // Oreilles
+    double deltaOMin = 30.,  deltaOMax = 80.;
+    double gammaOMin = 0.3, gammaOMax = 1.0;
+
     // Paramètres de la simulation, à compléter au besoin (taux de naissance, clonage, collision, etc..)
     // Accessoires
     double psiMin = 0.2, psiMax = 0.9;
@@ -36,6 +41,7 @@ public:
     virtual const ParamsSimulation &getParams() const = 0;
 
     virtual double probaYeux() const = 0;
+    virtual double probaOreilles() const = 0;
     virtual double probaCamouflage() const = 0;
     virtual double probaCarapace()   const = 0;
 };

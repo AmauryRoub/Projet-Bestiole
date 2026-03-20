@@ -5,6 +5,7 @@
 class Bestiole;
 class DecCamouflage;
 class DecCarapace;
+class DecOreilles;
 class DecYeux;
 
 class IVisiteur
@@ -15,6 +16,7 @@ public:
     virtual void visiter(DecCamouflage &) = 0;
     virtual void visiter(DecCarapace &) = 0;
     virtual void visiter(DecYeux &) = 0;
+    virtual void visiter(DecOreilles &) = 0;
 };
 
 #endif

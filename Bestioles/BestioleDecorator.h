@@ -28,10 +28,17 @@ public:
     int getAgeLimite() const override { return composant->getAgeLimite(); }
     bool estVivante() const override { return composant->estVivante(); }
 
+    void setCoords(int px, int py) override { composant->setCoords(px, py); }
+
     std::vector<IBestiole *> getBestiolesDetectees(
         const std::vector<IBestiole *> &toutes) const override
     {
         return composant->getBestiolesDetectees(toutes);
+    }
+
+    void agirAvecVoisines(const std::vector<IBestiole*>& v, Milieu& m) override
+    {
+    composant->agirAvecVoisines(v, m);
     }
 
     void setComportement(IComportement *c) override { composant->setComportement(c); }

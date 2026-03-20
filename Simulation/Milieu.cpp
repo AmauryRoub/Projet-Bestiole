@@ -122,7 +122,8 @@ void Milieu::step()
     {
         if (b->estVivante())
         {
-            b->action(*this);
+            auto voisines = b->getBestiolesDetectees(ptrBestioles);
+            b->agirAvecVoisines(voisines, *this);
             b->draw(*this);
         }
     }

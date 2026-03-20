@@ -3,6 +3,7 @@
 #include "DecCamouflage.h"
 #include "DecCarapace.h"
 #include "DecYeux.h"
+#include "DecOreilles.h"
 #include <cstdlib>
 
 BestioleFactory* BestioleFactory::instance = nullptr;
@@ -31,19 +32,31 @@ IBestiole* BestioleFactory::creer(int xLim, int yLim) const
     base->initCoords(xLim, yLim);
 
     // Comportement tiré selon les pourcentages de la configuration
-    if (config)
-        base->setComportement(config->tirerComportement());
+    IComportement* comportement = config ? config->tirerComportement() : nullptr;
+    if (comportement)
+        base->setComportement(comportement);
 
-    // Cast vers IBestiole* — point d'extension pour les Decorateurs (capteurs, accessoires)
     IBestiole* b = base;
     const ParamsSimulation& p = config ? config->getParams() : ParamsSimulation();
 
-    // Capteurs    
-    if (config && tirerProba(config->probaYeux())) {
+// Capteurs obligatoires pour les grégaires
+    bool dejaDesYeux = false;
+    if (comportement && std::string(comportement->nom()) == "Gregaire") {
+        b = new DecYeux(b, randDouble(M_PI / 6.,  M_PI / 3.), 100., 1.0);
+        dejaDesYeux = true;
+    }
+
+// Tirage aléatoire des yeux seulement si pas déjà équipée
+    if (!dejaDesYeux && config && tirerProba(config->probaYeux())) {
         double alpha  = randDouble(p.alphaMin,  p.alphaMax);
         double deltaY = randDouble(p.deltaYMin, p.deltaYMax);
         double gammaY = randDouble(p.gammaYMin, p.gammaYMax);
         b = new DecYeux(b, alpha, deltaY, gammaY);
+    }
+
+    if (config && tirerProba(config->probaOreilles())) {
+    b = new DecOreilles(b, randDouble(p.deltaOMin, p.deltaOMax),
+                           randDouble(p.gammaOMin, p.gammaOMax));
     }
 
     if (config && tirerProba(config->probaCarapace())) {
