@@ -12,6 +12,9 @@ int main()
     ConfigurationPopulation config;
     config.ajouterComportement("Gregaire", 0.30);
 
+    config.setProbaCamouflage(0.2);
+    config.setProbaCarapace(0.25);
+
     BestioleFactory::getInstance()->setConfiguration(&config);
 
     Aquarium ecosysteme(640, 480, 30);

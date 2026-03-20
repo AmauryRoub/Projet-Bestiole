@@ -2,7 +2,12 @@
 #define _ICONFIGURATION_H_
 
 class IComportement;
-
+struct ParamsSimulation
+{
+    // Paramètres de la simulation, à compléter au besoin (taux de naissance, clonage, collision, etc..)
+    // Accessoires
+    double psiMin = 0.2, psiMax = 0.9;
+};
 
 /**
  * @class IConfiguration
@@ -21,6 +26,11 @@ public:
     virtual ~IConfiguration() {}
 
     virtual IComportement *tirerComportement() const = 0;
+    virtual const ParamsSimulation &getParams() const = 0;
+
+
+    virtual double probaCamouflage() const = 0;
+    virtual double probaCarapace()   const = 0;
 };
 
 #endif

@@ -29,6 +29,45 @@ void Milieu::notifier(const Evenement &e)
         o->notifier(e);
 }
 
+void Milieu::gererCollisions()
+{
+    const double RAYON_COLLISION = 12.0;
+    const double PROBA_MORT = 0.3;
+
+    for (size_t i = 0; i < ptrBestioles.size(); ++i)
+    {
+        for (size_t j = i + 1; j < ptrBestioles.size(); ++j)
+        {
+            IBestiole *a = ptrBestioles[i];
+            IBestiole *b = ptrBestioles[j];
+            if (!a->estVivante() || !b->estVivante())
+                continue;
+
+            double dx = a->getX() - b->getX();
+            double dy = a->getY() - b->getY();
+            double dist = std::sqrt(dx * dx + dy * dy);
+
+            if (dist < RAYON_COLLISION)
+            {
+                notifier({TypeEvenement::COLLISION, a->getId(), pas, "collision"});
+                // Proba de mort réduite par omega (carapace) : PROBA_MORT / omega
+                double probaA = PROBA_MORT / a->getResistanceCollision();
+                double probaB = PROBA_MORT / b->getResistanceCollision();
+
+                if (static_cast<double>(std::rand()) / RAND_MAX < probaA)
+                    a->tuer();
+                else
+                    a->setOrientation(a->getOrientation() + M_PI);
+
+                if (static_cast<double>(std::rand()) / RAND_MAX < probaB)
+                    b->tuer();
+                else
+                    b->setOrientation(b->getOrientation() + M_PI);
+            }
+        }
+    }
+}
+
 void Milieu::gererNaissancesSpontanees()
 {
     const double TAUX_NAISSANCE = 0.005;

@@ -1,5 +1,6 @@
 #include "BestioleFactory.h"
 #include "Bestiole.h"
+#include "DecCamouflage.h"
 #include <cstdlib>
 
 BestioleFactory* BestioleFactory::instance = nullptr;
@@ -32,7 +33,16 @@ IBestiole* BestioleFactory::creer(int xLim, int yLim) const
         base->setComportement(config->tirerComportement());
 
     // Cast vers IBestiole* — point d'extension pour les Decorateurs (capteurs, accessoires)
-    return base;
+    IBestiole* b = base;
+    const ParamsSimulation& p = config ? config->getParams() : ParamsSimulation();
+
+    // Accessoires
+
+    if (config && tirerProba(config->probaCamouflage())) {
+        b = new DecCamouflage(b, randDouble(p.psiMin, p.psiMax));
+    }
+
+    return b;
 }
 
 std::vector<IBestiole*> BestioleFactory::creerPopulation(int nb, int xLim, int yLim) const

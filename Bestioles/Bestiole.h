@@ -31,6 +31,8 @@ private :
    double            cumulX, cumulY;
    double            orientation;
    double            vitesse;
+   int age;
+   int ageLimite;
    IComportement    * comportement;
    
    bool vivante;
@@ -48,6 +50,7 @@ public :                                           // Forme canonique :
    void action( Milieu & monMilieu );
    void draw( UImg & support );
    IBestiole *clone() const override { return new Bestiole(*this); }
+   void accept(IVisiteur &v) override;
    int getId() const override { return identite; }
    int getX() const override { return x; }
    int getY() const override { return y; }
@@ -56,7 +59,11 @@ public :                                           // Forme canonique :
    double getOrientation() const override { return orientation; }
 
    double getVitesse() const override { return vitesse; }
+   double getCamouflage() const override { return 0.0; }
+   int getAge() const override { return age; }
+   int getAgeLimite() const override { return ageLimite; }
    bool estVivante() const override { return vivante; }
+   double getResistanceCollision() const override { return 1.0; }
 
    bool jeTeVois( const Bestiole & b ) const;
 
@@ -68,7 +75,7 @@ public :                                           // Forme canonique :
    // Pour gregaire
    void setComportement(IComportement *c) override;
    void setOrientation(double o) override { orientation = o; }
-
+   void tuer() override { vivante = false; }
 
    friend bool operator==( const Bestiole & b1, const Bestiole & b2 );
 

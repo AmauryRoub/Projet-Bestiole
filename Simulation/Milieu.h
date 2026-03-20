@@ -23,6 +23,7 @@ private:
     int                      pas;
     JournalSimulation        journal;
 
+    void gererCollisions();
     void gererNaissancesSpontanees();
     void notifier(const Evenement& e);
 

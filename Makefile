@@ -1,8 +1,10 @@
 CXX      = g++
-CXXFLAGS = -Wall -std=c++11 -I. -I./Bestioles -I./Comportements -I./Creation -I./Observation  -I./Simulation -I./Lib
+CXXFLAGS = -Wall -std=c++11 -I. -I./Bestioles -I./CapteursEtAccessoires -I./Comportements -I./Creation -I./Observation  -I./Simulation -I./Visitor -I./Lib
 
 SRCS = main.cpp \
        Bestioles/Bestiole.cpp \
+	   CapteursEtAccessoires/DecCamouflage.cpp \
+	   CapteursEtAccessoires/DecCarapace.cpp \
        Simulation/Milieu.cpp \
        Simulation/Aquarium.cpp \
 	   Comportements/Gregaire.cpp \

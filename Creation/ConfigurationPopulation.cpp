@@ -2,6 +2,10 @@
 #include "Gregaire.h"
 #include <cstdlib>
 
+ConfigurationPopulation::ConfigurationPopulation()
+    : _probaCamouflage(0.2),  _probaCarapace(0.25)
+{}
+
 void ConfigurationPopulation::ajouterComportement(const std::string& nom, double pct)
 {
     repartition.push_back({nom, pct});

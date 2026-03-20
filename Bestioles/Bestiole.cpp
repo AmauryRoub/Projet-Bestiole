@@ -121,6 +121,11 @@ void Bestiole::draw(UImg & support)
     support.draw_circle(xt, yt, AFF_SIZE / 2., couleur);
 }
 
+void Bestiole::accept(IVisiteur& v)
+{
+    //v.visiter(*this);
+}
+
 bool operator==(const Bestiole & b1, const Bestiole & b2)
 {
     return (b1.identite == b2.identite);
