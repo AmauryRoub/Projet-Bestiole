@@ -5,6 +5,7 @@ SRCS = main.cpp \
        Bestioles/Bestiole.cpp \
 	   CapteursEtAccessoires/DecCamouflage.cpp \
 	   CapteursEtAccessoires/DecCarapace.cpp \
+	   CapteursEtAccessoires/DecYeux.cpp \
        Simulation/Milieu.cpp \
        Simulation/Aquarium.cpp \
 	   Comportements/Gregaire.cpp \

@@ -20,12 +20,13 @@ private:
     int                     width, height;
     std::vector<IBestiole*>  ptrBestioles;  
     std::vector<IObservateur*> observateurs;  // non owning
-    int                      pas;
+    int pas = 0;
     JournalSimulation        journal;
 
     void gererCollisions();
     void gererNaissancesSpontanees();
     void notifier(const Evenement& e);
+    void supprimerMortes();
 
 public:
     Milieu(int _width, int _height);

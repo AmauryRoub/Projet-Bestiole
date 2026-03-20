@@ -17,9 +17,9 @@ int main()
 
     BestioleFactory::getInstance()->setConfiguration(&config);
 
-    Aquarium ecosysteme(640, 480, 30);
+    Aquarium ecosysteme(1280, 720, 30);
 
-    auto population = BestioleFactory::getInstance()->creerPopulation(20, 640, 480);
+    auto population = BestioleFactory::getInstance()->creerPopulation(20, 1280, 720);
     for (auto* b : population)
         ecosysteme.getMilieu().addMember(b);
 

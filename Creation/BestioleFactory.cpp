@@ -1,6 +1,8 @@
 #include "BestioleFactory.h"
 #include "Bestiole.h"
 #include "DecCamouflage.h"
+#include "DecCarapace.h"
+#include "DecYeux.h"
 #include <cstdlib>
 
 BestioleFactory* BestioleFactory::instance = nullptr;
@@ -35,6 +37,19 @@ IBestiole* BestioleFactory::creer(int xLim, int yLim) const
     // Cast vers IBestiole* — point d'extension pour les Decorateurs (capteurs, accessoires)
     IBestiole* b = base;
     const ParamsSimulation& p = config ? config->getParams() : ParamsSimulation();
+
+    // Capteurs    
+    if (config && tirerProba(config->probaYeux())) {
+        double alpha  = randDouble(p.alphaMin,  p.alphaMax);
+        double deltaY = randDouble(p.deltaYMin, p.deltaYMax);
+        double gammaY = randDouble(p.gammaYMin, p.gammaYMax);
+        b = new DecYeux(b, alpha, deltaY, gammaY);
+    }
+
+    if (config && tirerProba(config->probaCarapace())) {
+    b = new DecCarapace(b, randDouble(p.omegaMin, p.omegaMax),
+                            randDouble(p.etaMin,   p.etaMax));
+}
 
     // Accessoires
 

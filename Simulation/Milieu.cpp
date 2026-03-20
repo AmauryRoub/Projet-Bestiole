@@ -29,6 +29,24 @@ void Milieu::notifier(const Evenement &e)
         o->notifier(e);
 }
 
+void Milieu::supprimerMortes()
+{
+    auto it = ptrBestioles.begin();
+    while (it != ptrBestioles.end())
+    {
+        if (!(*it)->estVivante())
+        {
+            notifier({TypeEvenement::MORT, (*it)->getId(), pas, "mort"});
+            delete *it;
+            it = ptrBestioles.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
 void Milieu::gererCollisions()
 {
     const double RAYON_COLLISION = 12.0;
@@ -110,7 +128,8 @@ void Milieu::step()
     }
 
     gererNaissancesSpontanees();
-
+    gererCollisions();
+    supprimerMortes();
 
     notifier({TypeEvenement::PAS_SIMULATION, -1, pas, ""});
     ++pas;
