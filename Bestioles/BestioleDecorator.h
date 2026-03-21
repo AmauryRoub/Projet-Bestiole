@@ -41,6 +41,7 @@ public:
     composant->agirAvecVoisines(v, m);
     }
 
+    void initCoords(int xLim, int yLim) override { composant->initCoords(xLim, yLim); }
     void setComportement(IComportement *c) override { composant->setComportement(c); }
     void setOrientation(double o) override { composant->setOrientation(o); }
     void tuer() override { composant->tuer(); }

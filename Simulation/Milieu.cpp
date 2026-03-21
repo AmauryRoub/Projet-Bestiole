@@ -86,6 +86,26 @@ void Milieu::gererCollisions()
     }
 }
 
+void Milieu::gererClonage()
+{
+    const double PROBA_CLONE = 0.001;
+    std::vector<IBestiole*> clones;
+
+    for (auto* b : ptrBestioles)
+    {
+        if (!b->estVivante()) continue;
+        if (static_cast<double>(std::rand()) / RAND_MAX < PROBA_CLONE)
+        {
+            IBestiole* clone = b->clone();
+            clone->initCoords(width, height); // position aléatoire
+            clones.push_back(clone);
+            notifier({TypeEvenement::CLONE, b->getId(), pas, "clonage"});
+        }
+    }
+    for (auto* c : clones)
+        addMember(c);
+}
+
 void Milieu::gererNaissancesSpontanees()
 {
     const double TAUX_NAISSANCE = 0.005;
@@ -130,6 +150,7 @@ void Milieu::step()
 
     gererNaissancesSpontanees();
     gererCollisions();
+    gererClonage();
     supprimerMortes();
 
     notifier({TypeEvenement::PAS_SIMULATION, -1, pas, ""});

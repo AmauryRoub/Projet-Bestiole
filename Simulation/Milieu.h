@@ -27,6 +27,7 @@ private:
     void gererNaissancesSpontanees();
     void notifier(const Evenement& e);
     void supprimerMortes();
+    void gererClonage();
 
 public:
     Milieu(int _width, int _height);

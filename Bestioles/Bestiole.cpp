@@ -23,6 +23,8 @@ Bestiole::Bestiole(void)
     orientation = static_cast<double>(rand()) / RAND_MAX * 2. * M_PI;
     vitesse = static_cast<double>(rand()) / RAND_MAX * MAX_VITESSE;
     vivante = true;
+    age = 0;
+    ageLimite = 500 + rand() % 1000; // entre 500 et 1500 pas
     couleur = new T[3];
     couleur[0] = COULEURS[0][0];
     couleur[1] = COULEURS[0][1];
@@ -133,6 +135,11 @@ bool operator==(const Bestiole & b1, const Bestiole & b2)
 
 void Bestiole::agirAvecVoisines(const std::vector<IBestiole*>& voisines, Milieu& m)
 {
+    age++;
+    if (age >= ageLimite) {
+        vivante = false;
+        return;
+    }
     if (comportement)
         comportement->agir(*this, voisines, m);
     bouge(m.getWidth(), m.getHeight());

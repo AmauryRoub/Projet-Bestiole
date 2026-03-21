@@ -32,6 +32,7 @@ public:
     virtual std::vector<IBestiole *> getBestiolesDetectees(
         const std::vector<IBestiole *> &toutes) const = 0;
 
+    virtual void initCoords(int xLim, int yLim) = 0;
     virtual void setComportement(IComportement *c) = 0;
     virtual void setOrientation(double o) = 0;
     virtual void tuer() = 0;
