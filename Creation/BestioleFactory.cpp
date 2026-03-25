@@ -55,6 +55,11 @@ if (comportement && std::string(comportement->nom()) == "Prevoyante") {
     dejaDesYeux = true;
 }
 
+if (comportement && std::string(comportement->nom()) == "PersonnalitesMultiples") {
+    b = new DecYeux(b, randDouble(M_PI / 6., M_PI / 3.), 120., 0.8);
+    dejaDesYeux = true;
+}
+
 if (!dejaDesYeux && config && tirerProba(config->probaYeux())) {
     double alpha  = randDouble(p.alphaMin,  p.alphaMax);
     double deltaY = randDouble(p.deltaYMin, p.deltaYMax);
@@ -65,6 +70,10 @@ if (!dejaDesYeux && config && tirerProba(config->probaYeux())) {
 // Oreilles (peureuses obligatoires, sinon aléatoire)
 bool dejaDesOreilles = false;
 if (comportement && std::string(comportement->nom()) == "Peureuse") { // Si la bestiole est peureuse, elle a forcément des oreilles
+    b = new DecOreilles(b, randDouble(p.deltaOMin, p.deltaOMax), 0.8);
+    dejaDesOreilles = true;
+}
+if (comportement && std::string(comportement->nom()) == "PersonnalitesMultiples") {
     b = new DecOreilles(b, randDouble(p.deltaOMin, p.deltaOMax), 0.8);
     dejaDesOreilles = true;
 }

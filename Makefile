@@ -14,6 +14,7 @@ SRCS = main.cpp \
 	   Comportements/Peureuse.cpp \
 	   Comportements/Kamikaze.cpp \
 	   Comportements/Prevoyante.cpp \
+	   Comportements/PersonnalitesMultiples.cpp \
 	   Creation/ConfigurationPopulation.cpp \
 	   Creation/BestioleFactory.cpp \
 	   Observation/JournalSimulation.cpp
@@ -30,7 +31,8 @@ TEST_SRCS = test.cpp \
             Comportements/Gregaire.cpp \
 			Comportements/Peureuse.cpp \
 			Comportements/Kamikaze.cpp \
-			 Comportements/Prevoyante.cpp \
+			Comportements/Prevoyante.cpp \
+			Comportements/PersonnalitesMultiples.cpp \
             Creation/ConfigurationPopulation.cpp \
             Creation/BestioleFactory.cpp \
             Observation/JournalSimulation.cpp

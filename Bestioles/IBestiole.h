@@ -17,6 +17,7 @@ public:
     virtual void draw(UImg &support) = 0;
     virtual IBestiole *clone() const = 0;
     virtual void accept(IVisiteur &v) = 0;
+    virtual void setVitesse(double v) = 0;
 
     virtual void setCoords(int px, int py) = 0;
     virtual int getId() const = 0;

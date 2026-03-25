@@ -10,17 +10,18 @@ using namespace std;
 int main()
 {
     ConfigurationPopulation config;
-    config.ajouterComportement("Gregaire", 0.00);
-    config.ajouterComportement("Peureuse", 0.00);
-    config.ajouterComportement("Kamikaze", 0.00);
-    config.ajouterComportement("Prevoyante", 0.00);
-    config.ajouterComportement("Neutre", 1.00);
+    config.ajouterComportement("Gregaire", 0.20);
+    config.ajouterComportement("Peureuse", 0.20);
+    config.ajouterComportement("Kamikaze", 0.20);
+    config.ajouterComportement("Prevoyante", 0.20);
+    config.ajouterComportement("Neutre", 0.10);
+    config.ajouterComportement("PersonnalitesMultiples", 0.10);
 
-    config.setProbaYeux(0);
-    config.setProbaOreilles(0);
-    config.setProbaCamouflage(0);
-    config.setProbaCarapace(1);
-    config.setProbaNageoires(0);
+    config.setProbaYeux(0.6);
+    config.setProbaOreilles(0.6);
+    config.setProbaCamouflage(0.2);
+    config.setProbaCarapace(0.2);
+    config.setProbaNageoires(0.4);
 
     BestioleFactory::getInstance()->setConfiguration(&config);
 

@@ -16,6 +16,7 @@ static const T COULEURS[][3] = {
     {200, 100, 100}, // 2 Peureuse (rouge)
     {200, 100, 200}, // 3 Kamikaze (violet)
     {100, 180, 220}, // 4 Prevoyante (bleu clair)
+    {255, 165,   0},  // 5 PersonnalitesMultiples (orange)
 };
 Bestiole::Bestiole(void)
 {
@@ -73,6 +74,8 @@ void Bestiole::setComportement(IComportement *c)
             idx = 3;
         else if (n == "Prevoyante")
             idx = 4;
+        else if (n == "PersonnalitesMultiples")
+            idx = 5;
     }
     couleur[0] = COULEURS[idx][0];
     couleur[1] = COULEURS[idx][1];

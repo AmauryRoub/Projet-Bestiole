@@ -17,7 +17,7 @@ public:
     void draw(UImg &s) override { composant->draw(s); }
     void accept(IVisiteur &v) override { composant->accept(v); }
     IBestiole *clone() const override = 0; // chaque décorateur l'implémente
-
+    void setVitesse(double v) override { composant->setVitesse(v); }
     int getId() const override { return composant->getId(); }
     int getX() const override { return composant->getX(); }
     int getY() const override { return composant->getY(); }

@@ -58,6 +58,7 @@ public :                                           // Forme canonique :
    //Pour gregaire
    double getOrientation() const override { return orientation; }
 
+   void setVitesse(double v) override { vitesse = v; }
    double getVitesse() const override { return vitesse; }
    double getCamouflage() const override { return 0.0; }
    int getAge() const override { return age; }

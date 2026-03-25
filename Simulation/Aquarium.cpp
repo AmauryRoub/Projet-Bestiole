@@ -1,5 +1,7 @@
 #include "Aquarium.h"
 #include "Milieu.h"
+#include "Kamikaze.h"
+#include "Gregaire.h"
 
 
 Aquarium::Aquarium( int width, int height, int _delay ) : CImgDisplay(), delay( _delay )
@@ -42,7 +44,31 @@ void Aquarium::run( void )
       if ( is_key() ) {
          cout << "Vous avez presse la touche " << static_cast<unsigned char>( key() );
          cout << " (" << key() << ")" << endl;
-         if ( is_keyESC() ) close();
+         if (is_keyESC()) close();
+
+// Touche 'K' → transforme une bestiole aléatoire en Kamikaze
+if (is_keyK()) {
+    auto& bestioles = flotte->getBestioles();
+    if (!bestioles.empty()) {
+        int idx = rand() % bestioles.size();
+        flotte->changerComportement(
+            bestioles[idx]->getId(),
+            new Kamikaze()
+        );
+    }
+}
+
+// Touche 'G' → transforme une bestiole aléatoire en Grégaire
+if (is_keyG()) {
+    auto& bestioles = flotte->getBestioles();
+    if (!bestioles.empty()) {
+        int idx = rand() % bestioles.size();
+        flotte->changerComportement(
+            bestioles[idx]->getId(),
+            new Gregaire()
+        );
+    }
+}
       }
 
       flotte->step(); // Sert à faire avancer la simulation (affiche dans la console)

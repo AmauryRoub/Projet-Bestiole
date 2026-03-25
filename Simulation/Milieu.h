@@ -59,6 +59,19 @@ public:
             std::remove(observateurs.begin(), observateurs.end(), o),
             observateurs.end());
     }
+
+    void changerComportement(int id, IComportement* c)
+{
+    for (auto* b : ptrBestioles)
+    {
+        if (b->getId() == id && b->estVivante())
+        {
+            b->setComportement(c);
+            notifier({TypeEvenement::CHANGEMENT_COMPORTEMENT, id, pas, c ? c->nom() : "Neutre"});
+            return;
+        }
+    }
+}
 };
 
 #endif

@@ -3,6 +3,7 @@
 #include "Peureuse.h"
 #include "Kamikaze.h"
 #include "Prevoyante.h"
+#include "PersonnalitesMultiples.h"
 #include <cstdlib>
 
 ConfigurationPopulation::ConfigurationPopulation()
@@ -38,6 +39,8 @@ IComportement *ConfigurationPopulation::tirerComportement() const
                 return new Prevoyante();
             if (e.nomComportement == "Neutre")
                 return nullptr;
+            if (e.nomComportement == "PersonnalitesMultiples")
+                return new PersonnalitesMultiples();
         }
     }
     return nullptr;
