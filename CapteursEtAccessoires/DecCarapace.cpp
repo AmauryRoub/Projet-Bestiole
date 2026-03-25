@@ -1,15 +1,16 @@
 #include "DecCarapace.h"
 #include "IVisiteur.h"
 
-DecCarapace::DecCarapace(IBestiole* c, double omega, double eta)
+DecCarapace::DecCarapace(IBestiole *c, double omega, double eta)
     : BestioleDecorator(c), omega(omega), eta(eta) {}
 
-IBestiole* DecCarapace::clone() const
+IBestiole *DecCarapace::clone() const
 {
     return new DecCarapace(composant->clone(), omega, eta);
 }
 
-void DecCarapace::accept(IVisiteur& v) {
+void DecCarapace::accept(IVisiteur &v)
+{
     // Étape A : Le Double Dispatch
     // Résolution dynamique du type réel de *this ET du visiteur v
     v.visiter(*this);
@@ -19,10 +20,10 @@ void DecCarapace::accept(IVisiteur& v) {
     composant->accept(v);
 }
 
-void DecCarapace::draw(UImg& support)
+void DecCarapace::draw(UImg &support)
 {
     composant->draw(support);
     // Anneau gris symbolisant la carapace
-    T coul[3] = {150, 150, 150};
-    support.draw_circle(getX(), getY(), 12, coul, 0.0f, 1U);
+    T coul[3] = {139, 69, 19};
+    support.draw_circle(getX(), getY(), 3, coul, 1.0f);
 }

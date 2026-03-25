@@ -14,6 +14,7 @@ class IVisiteur
 public:
     virtual ~IVisiteur() {}
 
+    virtual void visiter(Bestiole &) = 0;
     virtual void visiter(DecCamouflage &) = 0;
     virtual void visiter(DecCarapace &) = 0;
     virtual void visiter(DecYeux &) = 0;

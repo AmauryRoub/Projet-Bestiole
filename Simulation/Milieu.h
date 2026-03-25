@@ -9,23 +9,24 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm> // pour std::remove
 
 using namespace std;
 
 class Milieu : public UImg
 {
 private:
-    static const T          white[];
+    static const T white[];
 
-    int                     width, height;
-    std::vector<IBestiole*>  ptrBestioles;  
-    std::vector<IObservateur*> observateurs;  
+    int width, height;
+    std::vector<IBestiole *> ptrBestioles;
+    std::vector<IObservateur *> observateurs;
     int pas = 0;
-    JournalSimulation        journal;
+    JournalSimulation journal;
 
     void gererCollisions();
     void gererNaissancesSpontanees();
-    void notifier(const Evenement& e);
+    void notifier(const Evenement &e);
     void supprimerMortes();
     void gererClonage();
 
@@ -38,14 +39,26 @@ public:
 
     void step(void);
 
-    void addMember(IBestiole* b);
+    void addMember(IBestiole *b);
 
     // Fait naître une bestiole (événement extérieur)
     void fairenaitre();
 
-    const std::vector<IBestiole*>& getBestioles() const { return ptrBestioles; }
+    const std::vector<IBestiole *> &getBestioles() const { return ptrBestioles; }
 
-    int nbVoisins(const IBestiole& b);  
+    int nbVoisins(const IBestiole &b);
+
+    void ajouterObservateur(IObservateur *o)
+    {
+        observateurs.push_back(o);
+    }
+
+    void retirerObservateur(IObservateur *o)
+    {
+        observateurs.erase(
+            std::remove(observateurs.begin(), observateurs.end(), o),
+            observateurs.end());
+    }
 };
 
 #endif
