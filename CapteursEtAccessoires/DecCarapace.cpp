@@ -9,9 +9,13 @@ IBestiole* DecCarapace::clone() const
     return new DecCarapace(composant->clone(), omega, eta);
 }
 
-void DecCarapace::accept(IVisiteur& v)
-{
+void DecCarapace::accept(IVisiteur& v) {
+    // Étape A : Le Double Dispatch
+    // Résolution dynamique du type réel de *this ET du visiteur v
     v.visiter(*this);
+
+    // Étape B : La propagation (Synergie avec le Décorateur)
+    // On passe le visiteur à la couche interne (ex: la Bestiole de base)
     composant->accept(v);
 }
 

@@ -7,6 +7,7 @@ class DecCamouflage;
 class DecCarapace;
 class DecOreilles;
 class DecYeux;
+class DecNageoires;
 
 class IVisiteur
 {
@@ -17,6 +18,7 @@ public:
     virtual void visiter(DecCarapace &) = 0;
     virtual void visiter(DecYeux &) = 0;
     virtual void visiter(DecOreilles &) = 0;
+    virtual void visiter(DecNageoires &) = 0;
 };
 
 #endif

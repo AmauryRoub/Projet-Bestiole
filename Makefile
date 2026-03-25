@@ -7,9 +7,13 @@ SRCS = main.cpp \
 	   CapteursEtAccessoires/DecCarapace.cpp \
 	   CapteursEtAccessoires/DecYeux.cpp \
 	   CapteursEtAccessoires/DecOreilles.cpp \
+	   CapteursEtAccessoires/DecNageoires.cpp \
        Simulation/Milieu.cpp \
        Simulation/Aquarium.cpp \
 	   Comportements/Gregaire.cpp \
+	   Comportements/Peureuse.cpp \
+	   Comportements/Kamikaze.cpp \
+	   Comportements/Prevoyante.cpp \
 	   Creation/ConfigurationPopulation.cpp \
 	   Creation/BestioleFactory.cpp \
 	   Observation/JournalSimulation.cpp
@@ -22,7 +26,11 @@ TEST_SRCS = test.cpp \
             CapteursEtAccessoires/DecCarapace.cpp \
             CapteursEtAccessoires/DecYeux.cpp \
             CapteursEtAccessoires/DecOreilles.cpp \
+	   		CapteursEtAccessoires/DecNageoires.cpp \
             Comportements/Gregaire.cpp \
+			Comportements/Peureuse.cpp \
+			Comportements/Kamikaze.cpp \
+			 Comportements/Prevoyante.cpp \
             Creation/ConfigurationPopulation.cpp \
             Creation/BestioleFactory.cpp \
             Observation/JournalSimulation.cpp

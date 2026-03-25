@@ -11,6 +11,9 @@ int main()
 {
     ConfigurationPopulation config;
     config.ajouterComportement("Gregaire", 0.30);
+    config.ajouterComportement("Peureuse", 0.20);
+    config.ajouterComportement("Kamikaze", 0.15);
+    config.ajouterComportement("Prevoyante", 0.15);
     config.setProbaYeux(0.5);   
     config.setProbaOreilles(0.4);
     config.setProbaCamouflage(0.2);

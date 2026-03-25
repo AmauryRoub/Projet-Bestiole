@@ -19,6 +19,7 @@ struct ParamsSimulation
 
     double omegaMin = 1.5, omegaMax = 3.0;
     double etaMin   = 1.2, etaMax   = 2.0;
+    double nuMin = 1.2, nuMax = 2.5; // Pour les nageoires
 };
 
 /**
@@ -44,6 +45,7 @@ public:
     virtual double probaOreilles() const = 0;
     virtual double probaCamouflage() const = 0;
     virtual double probaCarapace()   const = 0;
+    virtual double probaNageoires() const = 0;
 };
 
 #endif

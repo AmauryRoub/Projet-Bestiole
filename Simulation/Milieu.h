@@ -19,7 +19,7 @@ private:
 
     int                     width, height;
     std::vector<IBestiole*>  ptrBestioles;  
-    std::vector<IObservateur*> observateurs;  // non owning
+    std::vector<IObservateur*> observateurs;  
     int pas = 0;
     JournalSimulation        journal;
 

@@ -15,7 +15,7 @@ class ConfigurationPopulation : public IConfiguration
 private:
     std::vector<EntreeConfig> repartition;
     ParamsSimulation          params;
-    double _probaYeux, _probaOreilles, _probaCamouflage, _probaCarapace;
+    double _probaYeux, _probaOreilles, _probaCamouflage, _probaCarapace, _probaNageoires;
 
 public:
     ConfigurationPopulation();
@@ -23,7 +23,7 @@ public:
     void setProbaOreilles(double p) { _probaOreilles = p; }
     void setProbaCamouflage(double p) { _probaCamouflage = p; }
     void setProbaCarapace(double p)   { _probaCarapace   = p; }
-
+    void setProbaNageoires(double p) { _probaNageoires = p; }
     void ajouterComportement(const std::string& nom, double pct);
     IComportement* tirerComportement() const override;
     const ParamsSimulation& getParams()         const override { return params; }
@@ -31,6 +31,7 @@ public:
     double probaOreilles() const override { return _probaOreilles; }
     double probaCamouflage() const override { return _probaCamouflage; }
     double probaCarapace()   const override { return _probaCarapace;   }
+    double probaNageoires() const override { return _probaNageoires; }
 };
 
 #endif

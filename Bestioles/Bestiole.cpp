@@ -10,10 +10,12 @@ const double      Bestiole::LIMITE_VUE = 30.;
 int               Bestiole::next = 0;
 
 static const T COULEURS[][3] = {
-    {200, 200, 200},  // 0 default   (gris)
-    {100, 200, 100},  // 1 Gregaire  (vert)
+    {200, 200, 200},  // 0 default (gris)
+    {100, 200, 100},  // 1 Gregaire (vert)
+    {200, 100, 100},  // 2 Peureuse (rouge)
+    {200, 100, 200},  // 3 Kamikaze (violet)
+    {100, 180, 220},  // 4 Prevoyante (bleu clair)
 };
-
 Bestiole::Bestiole(void)
 {
     identite = ++next;
@@ -62,6 +64,10 @@ void Bestiole::setComportement(IComportement* c)
     if (c) {
         string n = c->nom();
         if (n == "Gregaire") idx = 1;
+        else if (n == "Peureuse") idx = 2;
+        else if (n == "Kamikaze") idx = 3;
+        else if (n == "Prevoyante") idx = 4;
+
     }
     couleur[0] = COULEURS[idx][0];
     couleur[1] = COULEURS[idx][1];
